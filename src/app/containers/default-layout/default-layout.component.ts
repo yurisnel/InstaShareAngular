@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, Renderer2 } from '@angular/core';
-import { first, Observable } from 'rxjs';
+import { INavItem } from 'src/app/models/nav-item.interface';
 import { IUrlTitle } from 'src/app/models/url-title.interface';
 import { MainService } from 'src/app/services/main.service';
 
@@ -11,6 +11,20 @@ import { MainService } from 'src/app/services/main.service';
 })
 export class DefaultLayoutComponent {
   routerTitle?: IUrlTitle; 
+  sidebarNav: INavItem[] = [
+    {title: 'Dasboard', url:'home', icon:'bi-grid'},
+    {title: 'Tables', url:'', icon:'bi-layout-text-window-reverse', subitems: [
+      {title: 'General Tables', url:'/tables01', icon:'bi-circle'},
+      {title: 'Data Tables', url:'/tables02', icon:'bi-circle'},
+    ]},
+    {title: 'Pages', url:'', icon:''},
+    {title: 'Profile', url:'/profile', icon:'bi-person'},
+    {title: 'F.A.Q', url:'/faq', icon:'bi-question-circle'},
+    {title: 'Contact', url:'/contact', icon:'bi-envelope'},
+    {title: 'Register', url:'/register', icon:'bi-card-list'},
+    {title: 'Login', url:'/login', icon:'bi-box-arrow-in-right'},
+    {title: 'Error 404', url:'/400', icon:'bi-dash-circle'},
+  ]
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
@@ -22,8 +36,8 @@ export class DefaultLayoutComponent {
      this.document.body.classList.toggle('toggle-sidebar');
   }
 
-  ngOnInit() {
-       
+  ngOnInit() {       
+    this.routerTitle = this.mainService.getTitleBreadCrums();
     this.mainService.getSetRouterTitle()
     .subscribe((routerTitle:IUrlTitle) => {
       this.routerTitle = routerTitle;

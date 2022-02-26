@@ -5,6 +5,7 @@ import { filter, map, Observable } from 'rxjs';
 import { IUrlTitle } from './models/url-title.interface';
 import { MainService } from './services/main.service';
 import { first } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -12,12 +13,12 @@ import { first } from 'rxjs/operators';
   template: '<router-outlet></router-outlet>',
 })
 export class AppComponent {
-  title = 'Insta_share_angular';
+ 
   routerEventsTitle$: Observable<IUrlTitle> | undefined;
   
   constructor(
     private mainService: MainService
   ) {
-    this.mainService.setDefaultTitle(this.title);
+    this.mainService.setDefaultTitle(environment.title);
   }  
 }

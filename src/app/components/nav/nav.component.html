@@ -1,0 +1,24 @@
+<ul class="sidebar-nav" id="sidebar-nav">    
+    <li *ngFor="let it of items; index as i" [ngClass]="it.url != '' || it.subitems ? 'nav-item' : 'nav-heading'">
+      <a *ngIf="it.url" class="nav-link collapsed" [routerLink]="it.url">
+        <i class="bi {{it.icon}}"></i>
+        <span>{{it.title}}</span>
+      </a>
+      <span *ngIf="!it.url && !it.subitems">{{it.title}}</span>
+      <a *ngIf="it.subitems" class="nav-link collapsed" [attr.data-bs-target]="'#subnav-' + i" data-bs-toggle="collapse" href="#">
+        <i class="bi {{it.icon}}"></i>
+        <span>{{it.title}}</span>
+        <i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul *ngIf="it.subitems" id="subnav-{{i}}" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li *ngFor="let sit of it.subitems">
+              <a [routerLink]="sit.url">
+                <i class="bi {{sit.icon}}"></i><span>{{sit.title}}</span>
+              </a>
+            </li>
+      </ul>    
+      
+    </li><!-- End Profile Page Nav -->
+    
+
+  </ul>

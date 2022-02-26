@@ -6,8 +6,9 @@ import {
   Router,
   RouterEvent
 } from "@angular/router";
-import { Observable } from "rxjs";
+import { merge, Observable } from "rxjs";
 import { filter, map, tap } from "rxjs/operators";
+import { environment } from "src/environments/environment";
 import { IBreadCrums, IUrlTitle } from "../models/url-title.interface";
 
 
@@ -28,37 +29,46 @@ export class MainService {
   }
 
   getSetRouterTitle(): Observable<IUrlTitle> {
-    return this.router.events.pipe(
+     const event$ = this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
       map(() => {
-        //let childRouter = this.activatedRouter.firstChild ;
-        let childRouter: ActivatedRoute = this.router.routerState.root;
-        while (childRouter.firstChild) {
-          childRouter = childRouter.firstChild;
-        }
-        if (childRouter.snapshot.data["title"]) {
-          let titleBreadCrums: IUrlTitle = {
-            url: childRouter.snapshot.url.toString(),
-            title: childRouter.snapshot.data["title"]
-          };
-          return titleBreadCrums;
-        }
-        return {
-          url: childRouter.snapshot.url.toString(),
-          title: this.title.getTitle()
-        };
-      }),
-      map((titleUrl: IUrlTitle) => {
-        this.breadCrumbs.length = 0;
-        let menuItem = this.generateBreadCrums(this.router.routerState.root);
-        this.breadCrumbs.push(...menuItem);
-        return { ...titleUrl, breadCrums: this.breadCrumbs };
-      }),
-      tap((currentTitle: IUrlTitle) => {
-        this.title.setTitle(currentTitle.title);
-      })
+        let titleBreadCrums: IUrlTitle = this.getTitleBreadCrums();
+        this.title.setTitle(environment.title + ':'+titleBreadCrums.title);
+        return titleBreadCrums;
+      })     
+    );
+    return merge(
+      event$,
     );
   }
+  getTitleBreadCrums(){
+    let titleBreadCrums: IUrlTitle;
+    //let childRouter = this.activatedRouter.firstChild ;
+    let childRouter: ActivatedRoute = this.router.routerState.root;
+    while (childRouter.firstChild) {
+      childRouter = childRouter.firstChild;
+    }
+    
+    if (childRouter.snapshot.data["title"]) {
+       titleBreadCrums = {
+        url: childRouter.snapshot.url.toString(),
+        title: childRouter.snapshot.data["title"]
+      };         
+    }else{
+      titleBreadCrums = {
+        url: childRouter.snapshot.url.toString(),
+        title: this.title.getTitle()
+      };
+    }
+    this.breadCrumbs.length = 0;
+    let menuItem = this.generateBreadCrums(this.router.routerState.root);
+    this.breadCrumbs.push(...menuItem);
+    titleBreadCrums.breadCrums = this.breadCrumbs;
+
+    this.title.setTitle(environment.title + ': '+titleBreadCrums.title);
+    return titleBreadCrums;
+  }
+
   generateBreadCrums(
     activatedRouter: ActivatedRoute,
     url = "",

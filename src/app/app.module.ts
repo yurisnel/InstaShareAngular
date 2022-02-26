@@ -17,6 +17,7 @@ import {
 } from './containers';
 import { MainService } from './services/main.service';
 import { BreadcrumsComponent } from './components/breadcrums/breadcrums.component';
+import { NavComponent } from './components/nav/nav.component';
 
 
 const APP_CONTAINERS = [
@@ -24,7 +25,7 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS, BreadcrumsComponent],
+  declarations: [AppComponent, ...APP_CONTAINERS, BreadcrumsComponent, NavComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
