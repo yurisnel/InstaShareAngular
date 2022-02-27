@@ -23,7 +23,7 @@ export class DefaultLayoutComponent {
     {title: 'Contact', url:'/contact', icon:'bi-envelope'},
     {title: 'Register', url:'/register', icon:'bi-card-list'},
     {title: 'Login', url:'/login', icon:'bi-box-arrow-in-right'},
-    {title: 'Error 404', url:'/400', icon:'bi-dash-circle'},
+    {title: 'Error 404', url:'/page404', icon:'bi-dash-circle'},
   ]
   constructor(
     @Inject(DOCUMENT) private document: Document,

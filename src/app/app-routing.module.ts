@@ -3,70 +3,75 @@ import { RouterModule, Routes } from '@angular/router';
 import { DefaultLayoutComponent } from './containers';
 import { LoginComponent } from './views/pages/login/login.component';
 import { Page404Component } from './views/pages/page404/page404.component';
-import { Page500Component } from './views/pages/page500/page500.component';
 import { ProfileComponent } from './views/pages/profile/profile.component';
 import { FaqComponent } from './views/pages/faq/faq.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 import { ContactComponent } from './views/pages/contact/contact.component';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
     path: '',
     component: DefaultLayoutComponent,
-    data: {title: 'Home'},
+    data: {
+      title: 'Home'
+    },
     children: [
       {
-        path: 'dashboard',
-        loadChildren: () =>
-          import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)
+        path: 'home',
+        component: DashboardComponent,
+        /*loadChildren: () =>
+          import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)*/
       },  
       {
         path: 'profile',
         component: ProfileComponent,
-        data: {title: 'Profile'},
+        data: {
+          title: 'Profile'
+        },
       },     
       {
         path: 'faq',
         component: FaqComponent,
-        data: {title: 'FAQ'},
+        data: {
+          title: 'FAQ'
+        },
       },   
       {
         path: 'contact',
         component: ContactComponent,
-        data: {title: 'Contact'},
-      },   
-      {
-        path: 'pages',
-        loadChildren: () =>
-          import('./views/pages/pages.module').then((m) => m.PagesModule)
-      },
+        data: {
+          title: 'Contact'
+        },
+      }     
     ]
-  },
-  {
-    path: '404',
-    component: Page404Component,
-    data: {title: 'Page 404'}
-  },
-  {
-    path: '500',
-    component: Page500Component,
-    data: {title: 'Page 500'}
-  },
+  },  
   {
     path: 'login',
     component: LoginComponent,
-    data: {title: 'Login Page'}
+    data: {
+      title: 'Login Page'
+    }
   },
   {
     path: 'register',
     component: RegisterComponent,
-    data: {title: 'Register Page'}
+    data: {
+      title: 'Register Page'
+    }
+  },
+  {
+    path: 'page404',
+    component: Page404Component,
+    data: {
+      title: 'Page 404'
+    }
   },
   {path: '**', redirectTo: 'dashboard'}
 ];
