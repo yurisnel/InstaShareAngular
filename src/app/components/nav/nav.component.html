@@ -1,14 +1,14 @@
 <ul class="sidebar-nav" id="sidebar-nav">    
     <li *ngFor="let it of items; index as i" [ngClass]="it.url != '' || it.subitems ? 'nav-item' : 'nav-heading'">
      
-      <a *ngIf="it.url" class="nav-link collapsed" [routerLink]="it.url">
+      <a *ngIf="it.url" class="nav-link" [routerLink]="it.url" routerLinkActive="active">
         <i class="bi {{it.icon}}"></i>
         <span>{{it.title}}</span>
       </a>
      
       <span *ngIf="!it.url && !it.subitems">{{it.title}}</span>
       
-      <a *ngIf="it.subitems" class="nav-link collapsed" [attr.data-bs-target]="'#subnav-' + i" data-bs-toggle="collapse" href="#">
+      <a *ngIf="it.subitems" class="nav-link" [attr.data-bs-target]="'#subnav-' + i" data-bs-toggle="collapse" href="#" routerLinkActive="active">
         <i class="bi {{it.icon}}"></i>
         <span>{{it.title}}</span>
         <i class="bi bi-chevron-down ms-auto"></i>

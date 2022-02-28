@@ -8,6 +8,7 @@ import { FaqComponent } from './views/pages/faq/faq.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 import { ContactComponent } from './views/pages/contact/contact.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { AuthGuard } from './services/auth.guard';
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
+        canActivate: [AuthGuard],
         component: DashboardComponent,
         /*loadChildren: () =>
           import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)*/
@@ -32,6 +34,7 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent,
+        canActivate: [AuthGuard],
         data: {
           title: 'Profile'
         },
