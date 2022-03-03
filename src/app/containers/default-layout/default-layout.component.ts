@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject, Renderer2 } from '@angular/core';
 import { INavItem } from 'src/app/models/nav-item.interface';
 import { IUrlTitle } from 'src/app/models/url-title.interface';
+import { User } from 'src/app/models/user.model';
 import { MainService } from 'src/app/services/main.service';
 
 
@@ -10,6 +11,7 @@ import { MainService } from 'src/app/services/main.service';
   templateUrl: './default-layout.component.html',
 })
 export class DefaultLayoutComponent {
+  user?: User;
   routerTitle?: IUrlTitle; 
   sidebarNav: INavItem[] = [
     {title: 'Dasboard', url:'home', icon:'bi-grid'},
@@ -36,7 +38,17 @@ export class DefaultLayoutComponent {
      this.document.body.classList.toggle('toggle-sidebar');
   }
 
-  ngOnInit() {       
+  ngOnInit() {   
+    
+    let u = localStorage.getItem('user');
+    if(u){
+      this.user = JSON.parse(u);
+    }
+    this.mainService.onSetUser().subscribe(user =>{
+      this.user = user;
+      localStorage.setItem('user',JSON.stringify(this.user));
+    });
+
     this.routerTitle = this.mainService.getTitleBreadCrums();
     this.mainService.getSetRouterTitle()
     .subscribe((routerTitle:IUrlTitle) => {

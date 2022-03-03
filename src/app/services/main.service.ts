@@ -6,15 +6,17 @@ import {
   Router,
   RouterEvent
 } from "@angular/router";
-import { merge, Observable } from "rxjs";
+import { merge, Observable, Subject } from "rxjs";
 import { filter, map, tap } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { IBreadCrums, IUrlTitle } from "../models/url-title.interface";
+import { User } from "../models/user.model";
 
 
 @Injectable()
 export class MainService {  
-  breadCrumbs: IBreadCrums[] = [];
+  private breadCrumbs: IBreadCrums[] = [];
+  private userData$ = new Subject<User>();
   
   constructor(
     private title: Title,
@@ -22,6 +24,12 @@ export class MainService {
     //private activatedRouter: ActivatedRoute
   ) {
    
+  }
+  onSetUser(): Observable<User> {
+    return this.userData$.asObservable();
+  }
+  setUser(user: User){
+    this.userData$.next(user);
   }
 
   setDefaultTitle(defaultTitle: string) {

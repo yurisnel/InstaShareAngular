@@ -28,12 +28,14 @@ import { HttpConfigInterceptor } from './http.interceptor';
 import { ApiService } from './services/api.service';
 import { AlertComponent } from './components/alert/alert.component';
 import { ProfileComponent } from './views/pages/profile/profile.component';
+import { UploadImageComponent } from './components/upload-image/upload-image.component';
 
 const APP_CONTAINERS = [
   DefaultLayoutComponent,
   BreadcrumsComponent,
   NavComponent,
   AlertComponent,
+  UploadImageComponent,
   RegisterComponent,
   Page404Component,
   LoginComponent,

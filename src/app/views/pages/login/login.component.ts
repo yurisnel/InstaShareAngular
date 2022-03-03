@@ -34,7 +34,7 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.formLogin.invalid) {
-      this.alertService.error('Form Input Invalid');
+      this.alertService.error('Invalid form data');
       return;
     }
     const values = this.formLogin.value;
@@ -45,8 +45,7 @@ export class LoginComponent {
       .subscribe((result:any) => {
         if (result) {
           localStorage.setItem('access_token', result.token);
-          localStorage.setItem('user', result.user);
-          localStorage.setItem('profile', result.profile);
+          localStorage.setItem('user', JSON.stringify(result.user));
           this.router.navigate(['/home']);
         }
       });

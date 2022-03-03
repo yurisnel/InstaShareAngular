@@ -10,8 +10,10 @@
     </symbol>
 </svg>
 
-<div *ngFor="let alert of alerts" class="{{cssClass(alert)}}">       
-    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use [attr.xlink:href]="iconHref(alert)"/></svg>
-    <div [innerHTML]="alert.message"></div>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<div class="alerts">
+  <div *ngFor="let alert of alerts" [ngClass]="alert.classesList">
+      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use [attr.xlink:href]="iconHref(alert)"/></svg>
+      <div [innerHTML]="alert.message"></div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
 </div>

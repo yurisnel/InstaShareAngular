@@ -4,11 +4,16 @@ import { Subscription } from 'rxjs';
 import { Alert, AlertType } from 'src/app/components/alert/alert.model';
 import { AlertService } from 'src/app/components/alert/alert.service';
 
-@Component({ selector: 'alert', templateUrl: 'alert.component.html' })
+@Component(
+  {
+    selector: 'alert',
+    templateUrl: 'alert.component.html',
+    styleUrls: ['./alert.component.scss']
+  })
 export class AlertComponent implements OnInit, OnDestroy {
   @Input() id = 'default-alert';
   @Input() fade = true;
-
+  
   alerts: Alert[] = [];
   alertSubscription?: Subscription;
   routeSubscription?: Subscription;
@@ -31,6 +36,8 @@ export class AlertComponent implements OnInit, OnDestroy {
 
         // add alert to array
         this.alerts.push(alert);
+
+        this.setClass(alert);
 
         // auto close alert if required
         if (alert.autoClose) {
@@ -66,7 +73,9 @@ export class AlertComponent implements OnInit, OnDestroy {
       // fade out alert
 
       let temp = this.alerts.find(x => x === alert);
-      if (temp) temp.fade = true;
+      if (temp){
+        temp.classesList = temp.classesList.filter(x => x !== 'show');
+      }
 
       // remove alert after faded out
       setTimeout(() => {
@@ -82,7 +91,7 @@ export class AlertComponent implements OnInit, OnDestroy {
     const alertIcon = {
       [AlertType.Info]: '#info-fill',
       [AlertType.Success]: '#check-circle-fill',
-      [AlertType.Error]: '#exclamation-triangle-fill',     
+      [AlertType.Error]: '#exclamation-triangle-fill',
       [AlertType.Warning]: '#exclamation-triangle-fill'
     }
     if (alert.type != undefined)
@@ -91,24 +100,21 @@ export class AlertComponent implements OnInit, OnDestroy {
     return '';
   }
 
-  cssClass(alert: Alert) {
+  setClass(alert: Alert) {
     if (!alert) return;
 
-    const classes = ['alert', 'alert-dismissible', 'd-flex align-items-center'];
-
     const alertTypeClass = {
-      [AlertType.Success]: 'alert alert-success',
-      [AlertType.Error]: 'alert alert-danger',
-      [AlertType.Info]: 'alert alert-info',
-      [AlertType.Warning]: 'alert alert-warning'
+      [AlertType.Success]: 'alert-success',
+      [AlertType.Error]: 'alert-danger',
+      [AlertType.Info]: 'alert-info',
+      [AlertType.Warning]: 'alert-warning'
     }
     if (alert.type != undefined)
-      classes.push(alertTypeClass[alert.type]);
+      alert.classesList.push(alertTypeClass[alert.type]);
 
     if (alert.fade) {
-      classes.push('fade');
-    }
-
-    return classes.join(' ');
+      alert.classesList.push('fade');
+      setTimeout(() => alert.classesList.push('show'), 10);
+    }   
   }
 }

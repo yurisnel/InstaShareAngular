@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'body',
-  template: '<router-outlet></router-outlet>',
+  template: '<alert></alert><router-outlet></router-outlet>',
 })
 export class AppComponent {
  
