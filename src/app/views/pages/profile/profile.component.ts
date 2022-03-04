@@ -30,8 +30,8 @@ export class ProfileComponent {
   initialForm() {
     this.profileForm = this.fb.group({
       user: this.fb.group({
-        name: ['', Validators.required],
-        email: ['', Validators.required],
+        name: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]],
+        email: ['',  [Validators.required, Validators.email]],
         avatarUrl: [''],
       }),     
       about: ['', Validators.required],

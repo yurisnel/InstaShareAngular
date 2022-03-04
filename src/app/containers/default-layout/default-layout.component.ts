@@ -16,8 +16,8 @@ export class DefaultLayoutComponent {
   sidebarNav: INavItem[] = [
     {title: 'Dasboard', url:'home', icon:'bi-grid'},
     {title: 'Tables', url:'', icon:'bi-layout-text-window-reverse', subitems: [
-      {title: 'General Tables', url:'/tables01', icon:'bi-circle'},
-      {title: 'Data Tables', url:'/tables02', icon:'bi-circle'},
+      {title: 'General Tables', url:'/tables', icon:'bi-circle'},
+      {title: 'Data Tables', url:'/tables', icon:'bi-circle'},
     ]},
     {title: 'Pages', url:'', icon:''},
     {title: 'Profile', url:'/profile', icon:'bi-person'},

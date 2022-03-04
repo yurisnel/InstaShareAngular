@@ -9,6 +9,7 @@ import { RegisterComponent } from './views/pages/register/register.component';
 import { ContactComponent } from './views/pages/contact/contact.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { AuthGuard } from './services/auth.guard';
+import { TablesComponent } from './views/pages/tables/tables.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,13 @@ const routes: Routes = [
         /*loadChildren: () =>
           import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)*/
       },  
+      {
+        path: 'tables',
+        component: TablesComponent,
+        data: {
+          title: 'Tables Page'
+        }
+      },
       {
         path: 'profile',
         component: ProfileComponent,

@@ -4,6 +4,9 @@ export class User {
     public gender?: string;
     public avatarUrl?: string;
 
+    public constructor(init?: Partial<Profile>) {
+        Object.assign(this, init);
+    }
 }
 
 export class Profile {

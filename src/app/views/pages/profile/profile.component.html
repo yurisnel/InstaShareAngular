@@ -5,7 +5,7 @@
         <div class="card">
           <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-            <img src="{{profile?.user?.avatarUrl}}" alt="Profile" class="rounded-circle">
+            <img src="{{profile?.user?.avatarUrl || 'assets/img/profile-img.jpg'}}" alt="Profile" class="rounded-circle" >
             <h2>{{profile?.user?.name}}</h2>
             <h3>{{profile?.job}}</h3>
             <div class="social-links mt-2">
@@ -95,96 +95,96 @@
                   <div class="row mb-3">
                     <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                     <div class="col-md-8 col-lg-9">
-                      <img src="{{profile?.user?.avatarUrl}}" alt="Profile">
+                      <img src="{{profile?.user?.avatarUrl || 'assets/img/profile-img.jpg'}}" alt="Profile">
                       <div class="pt-2">
                         <app-upload-image [allowMultiple]="true" [requestAction]="'avatar'" (loadEvent)="onLoadImage($event)" ></app-upload-image>
                       </div>
                     </div>
                   </div>
                   
-                  <form novalidate [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+                  <form novalidate [formGroup]="profileForm" (ngSubmit)="onSubmit()" appFormSubmitValidation>
 
                   <div class="row mb-3" formGroupName="user">
                     <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
                     <div class="col-md-8 col-lg-9">
-                      <input formControlName="name" type="text" class="form-control" id="fullName" value="Kevin Anderson">
+                      <input formControlName="name" appFormControlValidation type="text" class="form-control" id="fullName" value="Kevin Anderson">
                     </div>
                   </div>
 
                   <div class="row mb-3">
                     <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
                     <div class="col-md-8 col-lg-9">
-                      <textarea formControlName="about" class="form-control" id="about" style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
+                      <textarea formControlName="about" appFormControlValidation class="form-control" id="about" style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
                     </div>
                   </div>
 
                   <div class="row mb-3">
                     <label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
                     <div class="col-md-8 col-lg-9">
-                      <input formControlName="company" type="text" class="form-control" id="company" value="Lueilwitz, Wisoky and Leuschke">
+                      <input formControlName="company" appFormControlValidation type="text" class="form-control" id="company" value="Lueilwitz, Wisoky and Leuschke">
                     </div>
                   </div>
 
                   <div class="row mb-3">
                     <label for="Job" class="col-md-4 col-lg-3 col-form-label">Job</label>
                     <div class="col-md-8 col-lg-9">
-                      <input formControlName="job" type="text" class="form-control" id="Job" value="Web Designer">
+                      <input formControlName="job" appFormControlValidation type="text" class="form-control" id="Job" value="Web Designer">
                     </div>
                   </div>
 
                   <div class="row mb-3">
                     <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
                     <div class="col-md-8 col-lg-9">
-                      <input formControlName="country" type="text" class="form-control" id="Country" value="USA">
+                      <input formControlName="country" appFormControlValidation type="text" class="form-control" id="Country" value="USA">
                     </div>
                   </div>
 
                   <div class="row mb-3">
                     <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
                     <div class="col-md-8 col-lg-9">
-                      <input formControlName="address" type="text" class="form-control" id="Address" value="A108 Adam Street, New York, NY 535022">
+                      <input formControlName="address" appFormControlValidation type="text" class="form-control" id="Address" value="A108 Adam Street, New York, NY 535022">
                     </div>
                   </div>
 
                   <div class="row mb-3">
                     <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
                     <div class="col-md-8 col-lg-9">
-                      <input formControlName="phone" type="text" class="form-control" id="Phone" value="(436) 486-3538 x29071">
+                      <input formControlName="phone" appFormControlValidation type="text" class="form-control" id="Phone" value="(436) 486-3538 x29071">
                     </div>
                   </div>
 
                   <div class="row mb-3" formGroupName="user">
                     <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                     <div class="col-md-8 col-lg-9">
-                      <input formControlName="email" type="email" class="form-control" id="Email" value="k.anderson@example.com">
+                      <input formControlName="email" appFormControlValidation type="email" class="form-control" id="Email" value="k.anderson@example.com">
                     </div>
                   </div>
 
                   <div class="row mb-3">
                     <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter Profile</label>
                     <div class="col-md-8 col-lg-9">
-                      <input formControlName="twitter" type="text" class="form-control" id="Twitter" value="https://twitter.com/#">
+                      <input formControlName="twitter" appFormControlValidation type="text" class="form-control" id="Twitter" value="https://twitter.com/#">
                     </div>
                   </div>
 
                   <div class="row mb-3">
                     <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook Profile</label>
                     <div class="col-md-8 col-lg-9">
-                      <input formControlName="facebook" type="text" class="form-control" id="Facebook" value="https://facebook.com/#">
+                      <input formControlName="facebook" appFormControlValidation type="text" class="form-control" id="Facebook" value="https://facebook.com/#">
                     </div>
                   </div>
 
                   <div class="row mb-3">
                     <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram Profile</label>
                     <div class="col-md-8 col-lg-9">
-                      <input formControlName="instagram" type="text" class="form-control" id="Instagram" value="https://instagram.com/#">
+                      <input formControlName="instagram" appFormControlValidation type="text" class="form-control" id="Instagram" value="https://instagram.com/#">
                     </div>
                   </div>
 
                   <div class="row mb-3">
                     <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin Profile</label>
                     <div class="col-md-8 col-lg-9">
-                      <input formControlName="linkedin" type="text" class="form-control" id="Linkedin" value="https://linkedin.com/#">
+                      <input formControlName="linkedin" appFormControlValidation type="text" class="form-control" id="Linkedin" value="https://linkedin.com/#">
                     </div>
                   </div>
 

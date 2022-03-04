@@ -2,7 +2,7 @@ export class Alert {
     id?: string;
     type?: AlertType;
     message?: string;
-    autoClose?: boolean = false;
+    autoClose?: boolean = true;
     keepAfterRouteChange?: boolean;
     fade?: boolean = true;
     classesList: string[] = ['alert', 'alert-dismissible', 'd-flex align-items-center'];

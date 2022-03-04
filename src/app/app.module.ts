@@ -29,21 +29,26 @@ import { ApiService } from './services/api.service';
 import { AlertComponent } from './components/alert/alert.component';
 import { ProfileComponent } from './views/pages/profile/profile.component';
 import { UploadImageComponent } from './components/upload-image/upload-image.component';
+import { FormControlValidationDirective } from './directives/formcontrol-validation.directive';
+import { FormSubmitValidationDirective } from './directives/formsubmit-validation.directive';
+import { TablesComponent } from './views/pages/tables/tables.component';
 
 const APP_CONTAINERS = [
   DefaultLayoutComponent,
   BreadcrumsComponent,
   NavComponent,
   AlertComponent,
-  UploadImageComponent,
+  UploadImageComponent,    
+  FormControlValidationDirective,
+  FormSubmitValidationDirective,
   RegisterComponent,
   Page404Component,
   LoginComponent,
-  ProfileComponent
+  ProfileComponent,
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS],
+  declarations: [AppComponent, ...APP_CONTAINERS, TablesComponent],
   imports: [
     RouterModule,
     BrowserModule,

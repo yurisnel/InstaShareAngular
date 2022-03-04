@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Profile } from '../models/user.model';
+import { Profile, User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,25 +10,32 @@ import { Profile } from '../models/user.model';
 export class ApiService {
   constructor(protected httpClient: HttpClient) { }
 
-  login(username: string, password: string): Observable<string> {
+  login(username: string, password: string): Observable<any> {
     const body = {
       email: username,
       password: password,
     };
-    return this.httpClient.post<string>(
+    return this.httpClient.post<any>(
       environment.apiUrl + '/auth/login',
       body
     );
   }
 
-  getProfile(): Observable<string> {
-    return this.httpClient.get<string>(
-      environment.apiUrl + '/profile'
+  register(user: User): Observable<any> {
+    return this.httpClient.post<any>(
+      environment.apiUrl + '/auth/signup',
+      user
     );
   }
 
-  saveProfile(profile: Profile): Observable<string> {
-    return this.httpClient.put<string>(
+  getProfile(): Observable<any> {
+    return this.httpClient.get<any>(
+      environment.apiUrl + '/profile'
+    );
+  }  
+
+  saveProfile(profile: Profile): Observable<any> {
+    return this.httpClient.put<any>(
       environment.apiUrl + '/profile',
       profile
     );

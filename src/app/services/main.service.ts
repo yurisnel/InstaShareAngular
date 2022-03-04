@@ -14,21 +14,21 @@ import { User } from "../models/user.model";
 
 
 @Injectable()
-export class MainService {  
+export class MainService {
   private breadCrumbs: IBreadCrums[] = [];
   private userData$ = new Subject<User>();
-  
+
   constructor(
     private title: Title,
     private router: Router,
     //private activatedRouter: ActivatedRoute
   ) {
-   
+
   }
   onSetUser(): Observable<User> {
     return this.userData$.asObservable();
   }
-  setUser(user: User){
+  setUser(user: User) {
     this.userData$.next(user);
   }
 
@@ -37,32 +37,32 @@ export class MainService {
   }
 
   getSetRouterTitle(): Observable<IUrlTitle> {
-     const event$ = this.router.events.pipe(
+    const event$ = this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
       map(() => {
         let titleBreadCrums: IUrlTitle = this.getTitleBreadCrums();
-        this.title.setTitle(environment.title + ':'+titleBreadCrums.title);
+        this.title.setTitle(environment.title + " | " + titleBreadCrums.title);
         return titleBreadCrums;
-      })     
+      })
     );
     return merge(
       event$,
     );
   }
-  getTitleBreadCrums(){
+  getTitleBreadCrums() {
     let titleBreadCrums: IUrlTitle;
     //let childRouter = this.activatedRouter.firstChild ;
     let childRouter: ActivatedRoute = this.router.routerState.root;
     while (childRouter.firstChild) {
       childRouter = childRouter.firstChild;
     }
-    
+
     if (childRouter.snapshot.data["title"]) {
-       titleBreadCrums = {
+      titleBreadCrums = {
         url: childRouter.snapshot.url.toString(),
         title: childRouter.snapshot.data["title"]
-      };         
-    }else{
+      };
+    } else {
       titleBreadCrums = {
         url: childRouter.snapshot.url.toString(),
         title: this.title.getTitle()
@@ -73,7 +73,7 @@ export class MainService {
     this.breadCrumbs.push(...menuItem);
     titleBreadCrums.breadCrums = this.breadCrumbs;
 
-    this.title.setTitle(environment.title + ': '+titleBreadCrums.title);
+    this.title.setTitle(environment.title + " | " + titleBreadCrums.title);
     return titleBreadCrums;
   }
 
