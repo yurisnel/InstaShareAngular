@@ -1,19 +1,20 @@
-# InstaShareAngular
+# Demo Angular
 
 
-Desarrollado para fines demostrativos y de práctica con [Angular CLI](https://github.com/angular/angular-cli) version 13.1.1, donde se plantean los siguientes requisitos:
+## Description
+Desarrollado para fines demostrativos y prácticos con [Angular CLI](https://github.com/angular/angular-cli) version 13.1.1, donde se plantean los siguientes requisitos:
 
-- Realizar aplicación un SPA con opciones de registro, login, perfil de usuario utilizando el framework boostrap como diseño de interfas 
+- Realizar aplicación SPA con opciones de registro, login, perfil de usuario utilizando el framework boostrap como diseño de interfas. 
 
 - Se desea restringuir el acceso algunas rutas para que solo  usuarios logeado puedan acceder
 
 - Los campos de formularios deben tener validaciones y se debe mostrar los errores para cada campo.
 
-- Se desea cargar imagen como avatar del perfil de usuario
+- Se desea cargar imagen como avatar del perfil de usuario.
 
-- Se desea que exista breadcrumb en cada página
+- Se desea que exista breadcrumb en cada página.
 
-- Se desea mostrar notificaciones al usuario cuando una operación ha sido realizada correcta o incorrectamente
+- Se desea mostrar notificaciones al usuario cuando una operación ha sido realizada correcta o incorrectamente.
 
 
 ## Desarrollo
@@ -48,13 +49,13 @@ Desarrollado para fines demostrativos y de práctica con [Angular CLI](https://g
 3. Ejecutar servidor: npm start o ng serve
 4. Abrir navegador en: http://localhost:4200/
 
-**PD:** Este proyecto requiere de un Api Rest que esta desarrollado en  https://github.com/yurisnel/InstaShareApiNest
-
 <img
 src="preview/profile.png"
 raw=true
 alt=""
 style="margin:10px"
 />
+
+**PD:** Este proyecto requiere de un Api Rest que esta desarrollado en  https://github.com/yurisnel/InstaShareApiNest
 
 
