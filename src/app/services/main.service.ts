@@ -6,16 +6,16 @@ import {
   Router,
   RouterEvent
 } from "@angular/router";
-import { merge, Observable, Subject } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { filter, map, tap } from "rxjs/operators";
 import { environment } from "src/environments/environment";
-import { IBreadCrums, IUrlTitle } from "../models/url-title.interface";
+import { IBreadCrumb, IUrlTitle } from "../models/url-title.interface";
 import { User } from "../models/user.model";
 
 
 @Injectable()
 export class MainService {
-  private breadCrumbs: IBreadCrums[] = [];
+  private breadCrumbs: IBreadCrumb[] = [];
   private userData$ = new Subject<User>();
 
   constructor(
@@ -25,9 +25,11 @@ export class MainService {
   ) {
 
   }
+
   onSetUser(): Observable<User> {
     return this.userData$.asObservable();
   }
+
   setUser(user: User) {
     this.userData$.next(user);
   }
@@ -45,10 +47,9 @@ export class MainService {
         return titleBreadCrums;
       })
     );
-    return merge(
-      event$,
-    );
+    return event$;
   }
+
   getTitleBreadCrums() {
     let titleBreadCrums: IUrlTitle;
     //let childRouter = this.activatedRouter.firstChild ;
@@ -71,7 +72,7 @@ export class MainService {
     this.breadCrumbs.length = 0;
     let menuItem = this.generateBreadCrums(this.router.routerState.root);
     this.breadCrumbs.push(...menuItem);
-    titleBreadCrums.breadCrums = this.breadCrumbs;
+    titleBreadCrums.breadCrumb = this.breadCrumbs;
 
     this.title.setTitle(environment.title + " | " + titleBreadCrums.title);
     return titleBreadCrums;
@@ -80,12 +81,12 @@ export class MainService {
   generateBreadCrums(
     activatedRouter: ActivatedRoute,
     url = "",
-    breadcrumbs: IBreadCrums[] = []
+    breadcrumb: IBreadCrumb[] = []
   ): any {
     const children: ActivatedRoute[] = activatedRouter.children;
 
     if (children.length === 0) {
-      return breadcrumbs;
+      return breadcrumb;
     }
 
     for (const child of children) {
@@ -98,10 +99,10 @@ export class MainService {
 
       const label = child.snapshot.data["title"];
       if (label) {
-        breadcrumbs.push({ label, url });
+        breadcrumb.push({ label, url });
       }
 
-      return this.generateBreadCrums(child, url, breadcrumbs);
+      return this.generateBreadCrums(child, url, breadcrumb);
     }
   }
 }

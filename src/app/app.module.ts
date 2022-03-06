@@ -16,7 +16,7 @@ import {
   DefaultLayoutComponent,
 } from './containers';
 import { MainService } from './services/main.service';
-import { BreadcrumsComponent } from './components/breadcrums/breadcrums.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { NavComponent } from './components/nav/nav.component';
 import { RouterModule } from '@angular/router';
 import { Page404Component } from './views/pages/page404/page404.component';
@@ -35,7 +35,7 @@ import { TablesComponent } from './views/pages/tables/tables.component';
 
 const APP_CONTAINERS = [
   DefaultLayoutComponent,
-  BreadcrumsComponent,
+  BreadcrumbComponent,
   NavComponent,
   AlertComponent,
   UploadImageComponent,    
