@@ -20,25 +20,25 @@ Desarrollado para fines demostrativos y prácticos con [Angular CLI](https://git
 
 - Se utilizan la plantilla [NiceAdmin](https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/) y se apdata para el framework Angular 13.1.0
 
-- Se crean [rutas](src\app\app-routing.module.ts) y componentes para las páginas login, register, profile, contact, faq, tables, error404.
+- Se crean [rutas](src/app/app-routing.module.ts) y componentes para las páginas login, register, profile, contact, faq, tables, error404.
 
-- Los formulario de [login](src\app\views\pages\login\login.component.ts), [registro](src\app\views\pages\register\register.component.ts) y [perfil](src\app\views\pages\profile\profile.component.ts) se hacen reactivos con validaciones.
+- Los formulario de [login](src/app/views/pages/login/login.component.ts), [registro](src/app/views/pages/register/register.component.ts) y [perfil](src/app/views/pages/profile/profile.component.ts) se hacen reactivos con validaciones.
 
 - Se crea las directivas **FormControlValidationDirective** y **FormSubmitValidationDirective** para mostrar los errores de validación en campos de formularios en eventos de modificación y submit.
 
-- Se crea alert [component](src\app\components\alert\alert.component.ts) y [servicio](src\app\components\alert\alert.service.ts) con funcionalidades reactivas para mostrar mensajes de alertas.
+- Se crea alert [component](src/app/components/alert/alert.component.ts) y [servicio](src/app/components/alert/alert.service.ts) con funcionalidades reactivas para mostrar mensajes de alertas.
 
-- Se crea componente para la [carga de imagenes](src\app\components\upload-image\upload-image.component.ts) con eventos y atributos parametrizables.
+- Se crea componente para la [carga de imagenes](src/app/components/upload-image/upload-image.component.ts) con eventos y atributos parametrizables.
 
-- Se crea componente para la creacion de menú o [navegación](src\app\components\nav\nav.component.ts)
+- Se crea componente para la creacion de menú o [navegación](src/app/components/nav/nav.component.ts)
 
-- Se crea [servicio](src\app\services\api.service.ts) para realizar peticiones al Api Rest como login, registro, obtener y actualizar datos del perfil, cargar imagen en el servidor.
+- Se crea [servicio](src/app/services/api.service.ts) para realizar peticiones al Api Rest como login, registro, obtener y actualizar datos del perfil, cargar imagen en el servidor.
 
-- Se controla el acceso de usuario por [JWT](https://github.com/auth0/angular2-jwt) a las [rutas](src\app\app-routing.module.ts) _home_ y _profile_ con la implemetación de la interfás [CanActivate](src\app\services\auth.guard.ts).
+- Se controla el acceso de usuario por [JWT](https://github.com/auth0/angular2-jwt) a las [rutas](src/app/app-routing.module.ts) _home_ y _profile_ con la implemetación de la interfás [CanActivate](src/app/services/auth.guard.ts).
 
-- Se crea [interceptor](src\app\http.interceptor.ts) http para agregar en headers el JWT de seguridad, asi como controlar los errores que puedan haber ocurrido en la petición.
+- Se crea [interceptor](src/app/http.interceptor.ts) http para agregar en headers el JWT de seguridad, asi como controlar los errores que puedan haber ocurrido en la petición.
 
-- Se crea [Servicio](src\app\services\main.service.ts) para [reaccionar](src\app\containers\default-layout\default-layout.component.ts) antes las modificaciones de los datos de usuario y las rutas (para cambiar el título y [breadcrumb](src\app\components\breadcrumb\breadcrumb.component.ts) de las páginas)
+- Se crea [Servicio](src/app/services/main.service.ts) para [reaccionar](src/app/containers/default-layout/default-layout.component.ts) antes las modificaciones de los datos de usuario y las rutas (para cambiar el título y [breadcrumb](src/app/components/breadcrumb/breadcrumb.component.ts) de las páginas)
 
 ## Implementación de la solución
 
